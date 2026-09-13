@@ -6,216 +6,145 @@
   <title>BASEBALL LIVE HUB</title>
   <style>
     :root{
-      --bg:#07111f;
-      --panel:#0d1b2a;
-      --panel2:#112338;
-      --line:#20344d;
-      --text:#f7fbff;
-      --muted:#9fb1c5;
-      --accent:#ff3b30;
-      --accent2:#20c997;
-      --yellow:#ffd166;
-      --blue:#4ea8ff;
-      --radius:18px;
-      --shadow:0 18px 40px rgba(0,0,0,.28);
+      --bg:#0a0f16;
+      --panel:#101822;
+      --panel2:#0d141d;
+      --line:#283544;
+      --text:#f4f7fb;
+      --muted:#97a5b5;
+      --accent:#ef3340;
+      --blue:#2f81f7;
+      --yellow:#f2c94c;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Arial,sans-serif;
-      background:
-        radial-gradient(circle at top right, rgba(78,168,255,.12), transparent 30%),
-        linear-gradient(180deg,#07111f 0%,#08121d 100%);
+      background:var(--bg);
       color:var(--text);
     }
     a{color:inherit}
-    .wrap{width:min(1240px,94vw);margin:0 auto}
+    button{font:inherit}
+    .wrap{width:min(1180px,94vw);margin:0 auto}
+
     header{
-      position:sticky; top:0; z-index:20;
-      background:rgba(7,17,31,.88);
-      border-bottom:1px solid rgba(255,255,255,.07);
-      backdrop-filter:blur(14px);
+      position:sticky;top:0;z-index:20;
+      background:#0b1119;
+      border-bottom:1px solid var(--line);
     }
-    .topbar{
-      display:flex;align-items:center;justify-content:space-between;
-      gap:16px;padding:15px 0;
-    }
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 0}
     .brand{display:flex;align-items:center;gap:12px}
     .logo{
-      width:44px;height:44px;border-radius:14px;
-      display:grid;place-items:center;font-weight:900;
-      background:linear-gradient(135deg,#ff3b30,#ff7a00);
-      box-shadow:var(--shadow)
+      width:40px;height:40px;display:grid;place-items:center;
+      background:var(--accent);font-weight:900;
     }
-    .brand h1{font-size:1.15rem;margin:0}
-    .brand p{margin:3px 0 0;color:var(--muted);font-size:.78rem}
-    .nav{display:flex;gap:8px;flex-wrap:wrap}
+    .brand h1{font-size:1.05rem;margin:0;letter-spacing:.02em}
+    .brand p{margin:3px 0 0;color:var(--muted);font-size:.75rem}
+    .nav{display:flex;gap:6px;flex-wrap:wrap}
     .nav button{
-      border:1px solid var(--line);background:#0c1725;color:var(--text);
-      border-radius:999px;padding:8px 12px;cursor:pointer
+      border:1px solid var(--line);background:#0d141d;color:var(--text);
+      padding:7px 12px;cursor:pointer;border-radius:2px;
     }
-    .nav button.active,.nav button:hover{background:#17314f}
+    .nav button.active,.nav button:hover{background:#1a2633}
 
-    .ticker{
-      overflow:hidden;border-bottom:1px solid rgba(255,255,255,.06);
-      background:#091523
-    }
+    .ticker{overflow:hidden;background:#0d141d;border-bottom:1px solid var(--line)}
     .ticker-track{
-      display:flex;gap:28px;padding:9px 0;
-      white-space:nowrap;animation:scroll 25s linear infinite;
-      color:#d8e8f8;font-size:.86rem
+      display:flex;gap:30px;padding:8px 0;white-space:nowrap;
+      animation:scroll 25s linear infinite;color:#d5dce5;font-size:.82rem
     }
-    .live-dot{display:inline-block;width:8px;height:8px;background:var(--accent);
-      border-radius:50%;margin-right:6px;box-shadow:0 0 0 4px rgba(255,59,48,.12)}
+    .live-dot{display:inline-block;width:7px;height:7px;background:var(--accent);margin-right:6px}
     @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-    .hero{
-      display:grid;grid-template-columns:1.7fr .8fr;gap:16px;
-      padding:22px 0 12px
-    }
-    .panel{
-      background:linear-gradient(180deg,rgba(17,35,56,.96),rgba(10,25,40,.96));
-      border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)
-    }
-    .live-main{padding:22px;position:relative;overflow:hidden}
-    .live-main:after{
-      content:"";position:absolute;right:-70px;top:-70px;width:250px;height:250px;
-      border-radius:50%;background:rgba(255,59,48,.09)
-    }
+    .hero{display:grid;grid-template-columns:1.7fr .8fr;gap:12px;padding:18px 0 10px}
+    .panel{background:var(--panel);border:1px solid var(--line);border-radius:3px}
+    .live-main{padding:20px}
     .live-badge{
       display:inline-flex;align-items:center;gap:7px;
-      background:#351014;color:#ff9d96;border:1px solid rgba(255,59,48,.35);
-      border-radius:999px;padding:6px 10px;font-size:.78rem;font-weight:800
+      padding:5px 8px;background:#241316;color:#ff9d96;
+      border:1px solid #71333a;font-size:.75rem;font-weight:800;border-radius:2px;
     }
-    .scoreboard{
-      display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;
-      margin:24px 0
-    }
+    .scoreboard{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;margin:22px 0}
     .team{text-align:center}
     .team .abbr{
-      width:74px;height:74px;border-radius:50%;margin:0 auto 9px;
-      display:grid;place-items:center;font-weight:900;font-size:1.25rem;
-      background:#0b2035;border:1px solid #2c4967
+      width:72px;height:58px;margin:0 auto 9px;display:grid;place-items:center;
+      font-size:1.05rem;font-weight:900;background:#0b131c;border:1px solid #344455;border-radius:2px;
     }
     .team strong{display:block}
-    .score{
-      font-size:clamp(2.7rem,8vw,5.5rem);font-weight:900;letter-spacing:-.06em
-    }
-    .inning{text-align:center;color:var(--muted);font-size:.9rem}
-    .inning strong{color:var(--yellow);display:block;font-size:1.15rem;margin-bottom:5px}
+    .score{font-size:clamp(2.5rem,8vw,5rem);font-weight:900;letter-spacing:-.06em}
+    .inning{text-align:center;color:var(--muted);font-size:.88rem}
+    .inning strong{color:var(--yellow);display:block;font-size:1.05rem;margin-bottom:4px}
 
-    .bases{
-      display:flex;align-items:center;justify-content:center;gap:16px;
-      margin:10px 0 20px
-    }
-    .diamond{
-      width:54px;height:54px;position:relative;transform:rotate(45deg)
-    }
-    .base{
-      width:18px;height:18px;background:#1e3650;border:1px solid #55728f;position:absolute
-    }
+    .bases{display:flex;align-items:center;justify-content:center;gap:18px;margin:10px 0 20px}
+    .diamond{width:50px;height:50px;position:relative;transform:rotate(45deg)}
+    .base{width:17px;height:17px;background:#1a2836;border:1px solid #617284;position:absolute}
     .base.on{background:var(--yellow);border-color:var(--yellow)}
-    .b1{right:0;top:18px}.b2{left:18px;top:0}.b3{left:0;top:18px}
-    .count{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:.8rem
-    }
-    .pill{background:#0a1725;border:1px solid var(--line);padding:8px 10px;border-radius:10px;text-align:center}
+    .b1{right:0;top:16px}.b2{left:16px;top:0}.b3{left:0;top:16px}
+    .count{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-size:.8rem}
+    .pill{background:#0c131b;border:1px solid var(--line);padding:7px 10px;text-align:center;border-radius:2px}
 
-    .actions{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{
-      text-decoration:none;border:0;border-radius:12px;padding:11px 14px;
-      font-weight:800;cursor:pointer;display:inline-block
-    }
-    .btn-primary{background:var(--accent);color:white}
-    .btn-secondary{background:#152a41;color:#dcecff;border:1px solid #294865}
+    .actions{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{border-radius:2px;padding:10px 13px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block}
+    .btn-primary{background:var(--accent);color:#fff;border:1px solid var(--accent)}
+    .btn-secondary{background:#131d28;color:#dcecff;border:1px solid #34495e}
 
-    .video-panel{padding:18px;display:flex;flex-direction:column;gap:12px}
+    .video-panel{padding:14px;display:flex;flex-direction:column;gap:10px}
     .video{
-      min-height:220px;border-radius:15px;
-      background:
-        linear-gradient(rgba(4,11,18,.2),rgba(4,11,18,.75)),
-        radial-gradient(circle at center,#23496c,#0c1726 70%);
-      display:grid;place-items:center;border:1px solid #2c4762;position:relative
+      min-height:220px;background:#0b121a;display:grid;place-items:center;
+      border:1px solid #344455;position:relative;border-radius:2px;
     }
     .play{
-      width:66px;height:66px;border-radius:50%;display:grid;place-items:center;
-      background:white;color:#111;font-size:1.55rem;padding-left:4px
+      width:58px;height:46px;display:grid;place-items:center;
+      background:#f5f5f5;color:#111;font-size:1.25rem;
     }
-    .video small{position:absolute;bottom:12px;left:12px;color:#bdd0e4}
-    .video-note{color:var(--muted);font-size:.82rem;line-height:1.5}
+    .video small{position:absolute;bottom:10px;left:10px;color:#b6c3d1}
+    .video-note{color:var(--muted);font-size:.8rem;line-height:1.5}
 
-    .banner-grid{
-      display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin:6px 0 18px
-    }
+    .banner-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;margin:4px 0 16px}
     .banner{
-      min-height:110px;border-radius:16px;padding:16px;border:1px solid var(--line);
-      display:flex;flex-direction:column;justify-content:space-between;overflow:hidden
+      min-height:104px;padding:15px;border:1px solid var(--line);border-radius:2px;
+      display:flex;flex-direction:column;justify-content:space-between;
     }
-    .b-red{background:linear-gradient(135deg,#4e1112,#9b2420)}
-    .b-blue{background:linear-gradient(135deg,#102e52,#174f86)}
-    .b-green{background:linear-gradient(135deg,#103b31,#17735a)}
-    .banner h3{margin:0;font-size:1.05rem}
-    .banner p{margin:7px 0 0;color:#d9e6f3;font-size:.82rem}
+    .b-red{background:#31161a}.b-blue{background:#14263d}.b-green{background:#143128}
+    .banner h3{margin:0;font-size:1rem}.banner p{margin:7px 0 0;color:#d5dde7;font-size:.8rem}
 
-    .section-title{
-      display:flex;align-items:end;justify-content:space-between;gap:10px;margin:22px 0 12px
-    }
-    .section-title h2{margin:0;font-size:1.15rem}
-    .section-title span{color:var(--muted);font-size:.8rem}
+    .section-title{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:20px 0 10px}
+    .section-title h2{margin:0;font-size:1.08rem}.section-title span{color:var(--muted);font-size:.78rem}
 
-    .games{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:12px
-    }
-    .game-card{padding:16px}
-    .game-top{display:flex;justify-content:space-between;color:var(--muted);font-size:.8rem}
-    .match{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin:18px 0}
-    .match .t{text-align:center;font-weight:800}
-    .match .s{font-size:1.8rem;font-weight:900}
-    .status{font-size:.75rem;padding:4px 8px;border-radius:999px;background:#13263b;border:1px solid var(--line)}
-    .status.live{background:#351014;border-color:#75302f;color:#ff9e98}
+    .games{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .game-card{padding:14px}
+    .game-top{display:flex;justify-content:space-between;color:var(--muted);font-size:.78rem}
+    .match{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin:17px 0}
+    .match .t{text-align:center;font-weight:800}.match .s{font-size:1.7rem;font-weight:900}
+    .status{font-size:.72rem;padding:3px 7px;background:#15202c;border:1px solid var(--line);border-radius:2px}
+    .status.live{background:#29171a;border-color:#71333a;color:#ff9e98}
 
-    .columns{
-      display:grid;grid-template-columns:1.25fr .75fr;gap:16px;margin-top:16px
-    }
+    .columns{display:grid;grid-template-columns:1.25fr .75fr;gap:12px;margin-top:12px}
     table{width:100%;border-collapse:collapse}
-    th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:center;font-size:.87rem}
-    th{color:#9fb4ca;font-weight:700}
+    th,td{padding:11px 9px;border-bottom:1px solid var(--line);text-align:center;font-size:.84rem}
+    th{color:#9fb0c1;font-weight:700;background:#0d141d}
     td:first-child,th:first-child{text-align:left}
-    .standings{padding:16px}
-    .schedule{padding:16px}
-    .schedule-item{
-      display:grid;grid-template-columns:70px 1fr auto;gap:10px;align-items:center;
-      padding:11px 0;border-bottom:1px solid var(--line)
-    }
-    .schedule-item:last-child{border-bottom:0}
-    .time{color:var(--yellow);font-weight:800}
-    .place{color:var(--muted);font-size:.8rem}
+    .standings,.schedule{padding:14px}
+    .schedule-item{display:grid;grid-template-columns:70px 1fr auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+    .schedule-item:last-child{border-bottom:0}.time{color:var(--yellow);font-weight:800}.place{color:var(--muted);font-size:.78rem}
 
-    .players{
-      display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:30px
+    .players{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px}
+    .player{padding:13px}.avatar{
+      height:130px;background:#101b26;border:1px solid #2f3e4f;display:grid;place-items:center;
+      font-size:2.7rem;font-weight:900;color:#a9bbcd;border-radius:2px;
     }
-    .player{padding:15px}
-    .avatar{
-      height:150px;border-radius:14px;background:linear-gradient(145deg,#1b3a58,#0f1d2a);
-      display:grid;place-items:center;font-size:3rem;font-weight:900;color:#aac3db
-    }
-    .player h3{margin:11px 0 3px}
-    .player p{margin:0;color:var(--muted);font-size:.82rem}
+    .player h3{margin:10px 0 3px}.player p{margin:0;color:var(--muted);font-size:.8rem}
 
-    footer{border-top:1px solid var(--line);color:var(--muted);font-size:.8rem;padding:24px 0 36px}
+    footer{border-top:1px solid var(--line);color:var(--muted);font-size:.78rem;padding:22px 0 32px}
+
     @media(max-width:900px){
       .hero,.columns{grid-template-columns:1fr}
-      .games{grid-template-columns:1fr 1fr}
-      .players{grid-template-columns:1fr 1fr}
-      .banner-grid{grid-template-columns:1fr 1fr}
-      .banner-grid .banner:first-child{grid-column:1/-1}
+      .games{grid-template-columns:1fr 1fr}.players{grid-template-columns:1fr 1fr}
+      .banner-grid{grid-template-columns:1fr 1fr}.banner-grid .banner:first-child{grid-column:1/-1}
     }
     @media(max-width:620px){
       .topbar{align-items:flex-start;flex-direction:column}
-      .games,.players,.banner-grid{grid-template-columns:1fr}
-      .banner-grid .banner:first-child{grid-column:auto}
-      .scoreboard{grid-template-columns:1fr auto 1fr}
-      .team .abbr{width:58px;height:58px}
+      .games,.players,.banner-grid{grid-template-columns:1fr}.banner-grid .banner:first-child{grid-column:auto}
+      .team .abbr{width:60px;height:52px}.scoreboard{gap:8px}
     }
   </style>
 </head>
@@ -224,223 +153,94 @@
   <div class="wrap topbar">
     <div class="brand">
       <div class="logo">B</div>
-      <div>
-        <h1>BASEBALL LIVE HUB</h1>
-        <p>KBO 중심 개인용 야구 대시보드</p>
-      </div>
+      <div><h1>BASEBALL LIVE HUB</h1><p>KBO 중심 개인용 야구 대시보드</p></div>
     </div>
     <div class="nav">
-      <button class="active">LIVE</button>
-      <button>경기</button>
-      <button>순위</button>
-      <button>선수</button>
-      <button>기록</button>
+      <button class="active">LIVE</button><button>경기</button><button>순위</button><button>선수</button><button>기록</button>
     </div>
   </div>
 </header>
-
-<div class="ticker">
-  <div class="wrap">
-    <div class="ticker-track">
-      <span><i class="live-dot"></i>삼성 4 : 3 LG · 7회말</span>
-      <span>두산 2 : 2 KIA · 6회초</span>
-      <span>한화 1 : 5 롯데 · 8회말</span>
-      <span>SSG 3 : 0 KT · 경기 종료</span>
-      <span>NC 0 : 0 키움 · 경기 전</span>
-      <span><i class="live-dot"></i>삼성 4 : 3 LG · 7회말</span>
-      <span>두산 2 : 2 KIA · 6회초</span>
-      <span>한화 1 : 5 롯데 · 8회말</span>
-    </div>
-  </div>
-</div>
+<div class="ticker"><div class="wrap"><div class="ticker-track">
+  <span><i class="live-dot"></i>삼성 4 : 3 LG · 7회말</span><span>두산 2 : 2 KIA · 6회초</span><span>한화 1 : 5 롯데 · 8회말</span><span>SSG 3 : 0 KT · 경기 종료</span><span>NC 0 : 0 키움 · 경기 전</span><span><i class="live-dot"></i>삼성 4 : 3 LG · 7회말</span><span>두산 2 : 2 KIA · 6회초</span>
+</div></div></div>
 
 <main class="wrap">
   <section class="hero">
     <div class="panel live-main">
-      <span class="live-badge"><i class="live-dot"></i> LIVE NOW</span>
+      <span class="live-badge"><i class="live-dot"></i>LIVE NOW</span>
       <div class="scoreboard">
-        <div class="team">
-          <div class="abbr">삼성</div>
-          <strong>삼성 라이온즈</strong>
-        </div>
-        <div>
-          <div class="score"><span id="homeScore">4</span> : <span id="awayScore">3</span></div>
-          <div class="inning"><strong id="inningText">7회말</strong>대구 삼성 라이온즈 파크</div>
-        </div>
-        <div class="team">
-          <div class="abbr">LG</div>
-          <strong>LG 트윈스</strong>
-        </div>
+        <div class="team"><div class="abbr">삼성</div><strong>삼성 라이온즈</strong></div>
+        <div><div class="score"><span id="homeScore">4</span> : <span id="awayScore">3</span></div><div class="inning"><strong id="inningText">7회말</strong>대구 삼성 라이온즈 파크</div></div>
+        <div class="team"><div class="abbr">LG</div><strong>LG 트윈스</strong></div>
       </div>
-
       <div class="bases">
-        <div class="diamond">
-          <div class="base b1 on"></div>
-          <div class="base b2"></div>
-          <div class="base b3 on"></div>
-        </div>
-        <div class="count">
-          <div class="pill">B <strong>2</strong></div>
-          <div class="pill">S <strong>1</strong></div>
-          <div class="pill">O <strong>1</strong></div>
-        </div>
+        <div class="diamond"><div class="base b1 on"></div><div class="base b2"></div><div class="base b3 on"></div></div>
+        <div class="count"><div class="pill">B <strong>2</strong></div><div class="pill">S <strong>1</strong></div><div class="pill">O <strong>1</strong></div></div>
       </div>
-
       <div class="actions">
         <a class="btn btn-primary" href="https://sports.naver.com/kbaseball/index" target="_blank" rel="noopener">공식 중계 페이지 열기</a>
         <button class="btn btn-secondary" id="demoUpdate">실시간 데이터 데모 갱신</button>
       </div>
     </div>
-
     <aside class="panel video-panel">
-      <div class="video">
-        <div class="play">▶</div>
-        <small>공식 중계 Embed / Player 영역</small>
-      </div>
-      <strong>📺 LIVE PLAYER</strong>
-      <div class="video-note">
-        실제 경기 영상을 이 영역에서 재생하려면 중계권이 허용된 공식 embed 주소 또는 합법적인 스트리밍 API가 필요합니다.
-        현재 파일은 화면 구조와 실시간 경기센터 데모를 구현해 둔 버전입니다.
-      </div>
+      <div class="video"><div class="play">▶</div><small>공식 중계 Embed / Player 영역</small></div>
+      <strong>LIVE PLAYER</strong>
+      <div class="video-note">실제 경기 영상을 재생하려면 공식 embed 주소 또는 합법적인 스트리밍 API가 필요합니다. 현재는 화면 구조와 경기센터 데모만 구현되어 있습니다.</div>
     </aside>
   </section>
 
   <section class="banner-grid">
-    <div class="banner b-red">
-      <div>
-        <h3>🔥 오늘의 빅매치</h3>
-        <p>삼성 vs LG · 순위 경쟁의 핵심 경기</p>
-      </div>
-      <strong>19:30 · 라이온즈 파크</strong>
-    </div>
-    <div class="banner b-blue">
-      <div>
-        <h3>📊 팀 순위</h3>
-        <p>현재 KBO 순위 한눈에 보기</p>
-      </div>
-      <strong>STANDINGS →</strong>
-    </div>
-    <div class="banner b-green">
-      <div>
-        <h3>⚾ 기록실</h3>
-        <p>타율 · 홈런 · ERA · WAR</p>
-      </div>
-      <strong>STATS →</strong>
-    </div>
+    <div class="banner b-red"><div><h3>오늘의 빅매치</h3><p>삼성 vs LG · 순위 경쟁의 핵심 경기</p></div><strong>19:30 · 라이온즈 파크</strong></div>
+    <div class="banner b-blue"><div><h3>팀 순위</h3><p>현재 KBO 순위 한눈에 보기</p></div><strong>STANDINGS →</strong></div>
+    <div class="banner b-green"><div><h3>기록실</h3><p>타율 · 홈런 · ERA · WAR</p></div><strong>STATS →</strong></div>
   </section>
 
-  <div class="section-title">
-    <h2>⚡ 오늘 경기</h2>
-    <span>샘플 실시간 경기센터</span>
-  </div>
-
+  <div class="section-title"><h2>오늘 경기</h2><span>샘플 실시간 경기센터</span></div>
   <section class="games">
-    <div class="panel game-card">
-      <div class="game-top"><span>대구</span><span class="status live">LIVE</span></div>
-      <div class="match"><div class="t">삼성</div><div class="s">4 : 3</div><div class="t">LG</div></div>
-      <div class="game-top"><span>7회말</span><span>1사 1·3루</span></div>
-    </div>
-    <div class="panel game-card">
-      <div class="game-top"><span>잠실</span><span class="status live">LIVE</span></div>
-      <div class="match"><div class="t">두산</div><div class="s">2 : 2</div><div class="t">KIA</div></div>
-      <div class="game-top"><span>6회초</span><span>2사 2루</span></div>
-    </div>
-    <div class="panel game-card">
-      <div class="game-top"><span>사직</span><span class="status">8회말</span></div>
-      <div class="match"><div class="t">한화</div><div class="s">1 : 5</div><div class="t">롯데</div></div>
-      <div class="game-top"><span>진행중</span><span>0사 주자 없음</span></div>
-    </div>
+    <div class="panel game-card"><div class="game-top"><span>대구</span><span class="status live">LIVE</span></div><div class="match"><div class="t">삼성</div><div class="s">4 : 3</div><div class="t">LG</div></div><div class="game-top"><span>7회말</span><span>1사 1·3루</span></div></div>
+    <div class="panel game-card"><div class="game-top"><span>잠실</span><span class="status live">LIVE</span></div><div class="match"><div class="t">두산</div><div class="s">2 : 2</div><div class="t">KIA</div></div><div class="game-top"><span>6회초</span><span>2사 2루</span></div></div>
+    <div class="panel game-card"><div class="game-top"><span>사직</span><span class="status">8회말</span></div><div class="match"><div class="t">한화</div><div class="s">1 : 5</div><div class="t">롯데</div></div><div class="game-top"><span>진행중</span><span>0사 주자 없음</span></div></div>
   </section>
 
   <section class="columns">
     <div class="panel standings">
-      <div class="section-title" style="margin-top:0">
-        <h2>🏆 KBO 순위</h2><span>샘플 데이터</span>
-      </div>
-      <table>
-        <thead>
-          <tr><th>팀</th><th>경기</th><th>승</th><th>패</th><th>승률</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>1. 삼성</td><td>120</td><td>72</td><td>46</td><td>.610</td></tr>
-          <tr><td>2. LG</td><td>121</td><td>70</td><td>49</td><td>.588</td></tr>
-          <tr><td>3. KIA</td><td>119</td><td>66</td><td>51</td><td>.564</td></tr>
-          <tr><td>4. 두산</td><td>120</td><td>63</td><td>55</td><td>.534</td></tr>
-          <tr><td>5. 한화</td><td>118</td><td>60</td><td>56</td><td>.517</td></tr>
-        </tbody>
-      </table>
+      <div class="section-title" style="margin-top:0"><h2>KBO 순위</h2><span>샘플 데이터</span></div>
+      <table><thead><tr><th>팀</th><th>경기</th><th>승</th><th>패</th><th>승률</th></tr></thead><tbody>
+        <tr><td>1. 삼성</td><td>120</td><td>72</td><td>46</td><td>.610</td></tr>
+        <tr><td>2. LG</td><td>121</td><td>70</td><td>49</td><td>.588</td></tr>
+        <tr><td>3. KIA</td><td>119</td><td>66</td><td>51</td><td>.564</td></tr>
+        <tr><td>4. 두산</td><td>120</td><td>63</td><td>55</td><td>.534</td></tr>
+        <tr><td>5. 한화</td><td>118</td><td>60</td><td>56</td><td>.517</td></tr>
+      </tbody></table>
     </div>
-
     <div class="panel schedule">
-      <div class="section-title" style="margin-top:0">
-        <h2>🗓️ 다음 경기</h2><span>삼성</span>
-      </div>
-      <div class="schedule-item">
-        <div class="time">9/08<br>18:30</div>
-        <div><strong>삼성 vs LG</strong><div class="place">대구</div></div>
-        <div>›</div>
-      </div>
-      <div class="schedule-item">
-        <div class="time">9/09<br>18:30</div>
-        <div><strong>삼성 vs 두산</strong><div class="place">잠실</div></div>
-        <div>›</div>
-      </div>
-      <div class="schedule-item">
-        <div class="time">9/10<br>18:30</div>
-        <div><strong>삼성 vs 두산</strong><div class="place">잠실</div></div>
-        <div>›</div>
-      </div>
+      <div class="section-title" style="margin-top:0"><h2>다음 경기</h2><span>삼성</span></div>
+      <div class="schedule-item"><div class="time">9/08<br>18:30</div><div><strong>삼성 vs LG</strong><div class="place">대구</div></div><div>›</div></div>
+      <div class="schedule-item"><div class="time">9/09<br>18:30</div><div><strong>삼성 vs 두산</strong><div class="place">잠실</div></div><div>›</div></div>
+      <div class="schedule-item"><div class="time">9/10<br>18:30</div><div><strong>삼성 vs 두산</strong><div class="place">잠실</div></div><div>›</div></div>
     </div>
   </section>
 
-  <div class="section-title">
-    <h2>⭐ 주요 선수</h2>
-    <span>삼성 라이온즈 중심</span>
-  </div>
-
+  <div class="section-title"><h2>주요 선수</h2><span>삼성 라이온즈 중심</span></div>
   <section class="players">
-    <div class="panel player">
-      <div class="avatar">25</div>
-      <h3>타자 A</h3><p>AVG .321 · HR 28</p>
-    </div>
-    <div class="panel player">
-      <div class="avatar">18</div>
-      <h3>투수 B</h3><p>ERA 2.84 · 13승</p>
-    </div>
-    <div class="panel player">
-      <div class="avatar">7</div>
-      <h3>타자 C</h3><p>OPS .913 · RBI 88</p>
-    </div>
-    <div class="panel player">
-      <div class="avatar">54</div>
-      <h3>마무리 D</h3><p>SV 31 · ERA 1.92</p>
-    </div>
+    <div class="panel player"><div class="avatar">25</div><h3>타자 A</h3><p>AVG .321 · HR 28</p></div>
+    <div class="panel player"><div class="avatar">18</div><h3>투수 B</h3><p>ERA 2.84 · 13승</p></div>
+    <div class="panel player"><div class="avatar">7</div><h3>타자 C</h3><p>OPS .913 · RBI 88</p></div>
+    <div class="panel player"><div class="avatar">54</div><h3>마무리 D</h3><p>SV 31 · ERA 1.92</p></div>
   </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    개인용 야구 대시보드 프로토타입 · 실제 실시간 점수는 KBO/스포츠 데이터 API 연결 필요 ·
-    경기 영상은 공식 중계권 또는 허용된 embed 방식으로만 연결하세요.
-  </div>
-</footer>
+<footer><div class="wrap">개인용 야구 대시보드 프로토타입 · 실제 실시간 점수는 KBO/스포츠 데이터 API 연결 필요 · 경기 영상은 공식 중계권 또는 허용된 embed 방식으로만 연결하세요.</div></footer>
 
 <script>
-  // 데모용: 실제 구현에서는 이 부분을 fetch("/api/live") 같은 호출로 교체하면 됩니다.
   let demoTick = 0;
   document.getElementById("demoUpdate").addEventListener("click", () => {
     demoTick++;
     const score = document.getElementById("homeScore");
     const inning = document.getElementById("inningText");
-
-    if (demoTick % 3 === 1) {
-      inning.textContent = "8회초";
-    } else if (demoTick % 3 === 2) {
-      score.textContent = Number(score.textContent) + 1;
-      inning.textContent = "8회말";
-    } else {
-      inning.textContent = "9회초";
-    }
+    if (demoTick % 3 === 1) inning.textContent = "8회초";
+    else if (demoTick % 3 === 2) { score.textContent = Number(score.textContent) + 1; inning.textContent = "8회말"; }
+    else inning.textContent = "9회초";
   });
 </script>
 </body>
